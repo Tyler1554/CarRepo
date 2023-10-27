@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Rental</title>
+    <style>
+        .age{
+            border: none;
+        }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>ACME Car Rental</h1>
+      <label for="">Pickup Date:</label>
+      <input type="date" id="pickupDate"/> <br /><br />
+      <label for="">Number of Days:</label>
+      <input type="text" id="numberOfDays"/>
+      <h3>options</h3>
+      <input type="checkbox" id="tollTagBox" />
+      <label for="activeCheckbox">Electronic Toll Tag ($3.95/day)</label><br />
+      <input type="checkbox" id="gpsBox" />
+      <label for="activeCheckbox">GPS ($2.95/day)</label><br />
+      <input type="checkbox" id="roadsideAssistanceBox" />
+      <label for="activeCheckbox">Roadside Assistance ($2.95/day)</label>
+      <h3>under 25</h3>
+
+      <fieldset class="age">
+        <input type="radio" name="Age selector" id="under25" />No
+
+        <input type="radio" name="Age selector" id="over25" />Yes
+      </fieldset>
+      <br />
+      <button id="displayCostButton">Estimate Total Cost</button>
+
+      <p id="paymentBreakdown"></p>
+    </main>
+
+    <script>
+        let pickupDate= document.getElementById("pickupDate");
+        let numberOfDays= document.getElementById("numberOfDays");
+        let tollTagBox= document.getElementById("tollTagBox");
+        let gpsBox= document.getElementById("gpsBox");
+        let roadsideAssistanceBox= document.getElementById("roadsideAssistanceBox");
+        let under25= document.getElementById("under25");
+        let over25= document.getElementById("over25");
+        let price =0;
+        let displayParagraph= document.getElementById("paymentBreakdown")
+       
+        function totalPricePerDay(){
+            let numberofDayValue= Number(numberOfDays.value);
+            let dailyprice=29.99;
+            let totalPrice= dailyprice*numberofDayValue;
+            return totalPrice
+        }
+    
+        function options(){
+           let numberofDayValue= numberOfDays.value;
+            if (tollTagBox.checked){
+                price+=3.95* numberofDayValue;
+            }
+            if (gpsBox.checked){
+                 price+=2.95* numberofDayValue;
+            }
+            if (roadsideAssistanceBox.checked){
+                 price+=2.95* numberofDayValue;
+            }
+                return price;
+        }
+        
+        function ageRadio(){
+            if (under25.checked){
+                return price*.3
+            }
+            else {return price}
+
+
+        }
+    
+        function finalCost(){
+          let finalCost= totalPricePerDay+options+ageRadio;
+           
+        }
+
+        // function display(){
+        // let display = finalCost.style.display;
+        
+        // }
+        
+        // displayParagraph.onclick= display; 
+
+    </script>
+  </body>
+</html>
