@@ -57,24 +57,25 @@
       }
 
       function options() {
+        let priceOfOptions=0;
         let numberofDayValue = Number(numberOfDays.value);
         if (tollTagBox.checked) {
-          price += 3.95 * numberofDayValue;
+          priceOfOptions += 3.95 * numberofDayValue;
         }
         if (gpsBox.checked) {
-          price += 2.95 * numberofDayValue;
+          priceOfOptions += 2.95 * numberofDayValue;
         }
         if (roadsideAssistanceBox.checked) {
-          price += 2.95 * numberofDayValue;
+          priceOfOptions += 2.95 * numberofDayValue;
         }
-        return price;
+        return priceOfOptions;
       }
 
       function ageRadio() {
         if (under25.checked) {
-          return price * 0.3;
+          return totalPricePerDay() * 0.3;
         } else {
-          return price;
+          return 0;
         }
       }
 
@@ -84,7 +85,7 @@
       }
 
       function display() {
-         displayParagraph.innerText = `Car Rental: ${totalPricePerDay()} \n options: ${options()} \n Under 25 surcharge: ${ageRadio()} \n Total Cost: ${finalCost()}`;
+         displayParagraph.innerText = `Car Rental: ${totalPricePerDay().toFixed(2)} \n options: ${options().toFixed(2)} \n Under 25 surcharge: ${ageRadio().toFixed(2)} \n Total Cost: ${finalCost().toFixed(2)}`;
          
       }
       
